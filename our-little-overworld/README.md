@@ -37,3 +37,7 @@ js/  config.js memories.js letter.js main.js world.js particles.js animations.js
 
 *Original fan-made tribute aesthetic. Not affiliated with Mojang/Microsoft; no copyrighted assets used.*
 **ONE WORLD. TWO HEARTS. THIRTY-THREE MONTHS. 💛**
+
+## Update — scroll & tap ONLY + hard-coded Maximize
+This is a website, not a game: there are **no movement controls, no joystick, no WASD, nothing to "play"** — you scroll, and you tap/click things (blossom blocks, mobs, cottage, book, portal, beacon). The repo root `index.html` now opens THIS website directly (the old 3D prototype moved to `game.html` so it can't be opened by accident).
+**Maximize is hard-coded, not just a word:** the `window.__hardMaximize()` function in `js/interactions.js` forces real fullscreen + cinema letterbox bars in code, and pressing **ENTER OUR WORLD** calls it automatically before scrolling (`js/main.js`). The ⛶ MAXIMIZE nav button calls the same function. (Browsers require one tap/click before fullscreen is allowed — that's why it triggers on ENTER.)
