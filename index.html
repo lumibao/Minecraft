@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache">
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <title>Our Little Overworld — 33 Months Together</title>
 <link rel="stylesheet" href="our-little-overworld/css/main.css"><link rel="stylesheet" href="our-little-overworld/css/world.css"><link rel="stylesheet" href="our-little-overworld/css/mobs.css"><link rel="stylesheet" href="our-little-overworld/css/animations.css"><link rel="stylesheet" href="our-little-overworld/css/sections.css"><link rel="stylesheet" href="our-little-overworld/css/interactions.css"><link rel="stylesheet" href="our-little-overworld/css/responsive.css">
 </head><body>
@@ -11,6 +11,26 @@
   <div class="loadbar"><div id="loadfill"></div></div>
   <p id="loadtext">Placing 33 months of memories...</p>
   <p style="opacity:.7">for Hatsuki, with love — Van 💛</p>
+</div>
+
+<!-- CINEMATIC INTRO: two players, one world (pure CSS 3D, hand-coded) -->
+<div id="intro" role="dialog" aria-label="Cinematic intro: Hatsuki and Van meet in our world">
+  <span class="bars"></span>
+  <span class="intro-tree" style="left:8%">🌸</span><span class="intro-tree" style="right:10%">🌳</span>
+  <div class="intro-stage">
+    <div class="intro-ground"></div>
+    <div class="player3d" id="ihat"><span class="nametag">♥ Hatsuki</span>
+      <div class="head3d"><span class="face front" style="background:#f2c9a4"><span class="eyes"><i></i><i></i></span><span class="mouth"></span></span><span class="face side" style="background:#3a2a1a"></span><span class="face top" style="background:#3a2a1a"></span></div>
+      <div class="body3d" style="background:#ff8fb3"><span class="arm3d l" style="left:-13px;background:#f2c9a4"></span><span class="arm3d r" style="right:-13px;background:#f2c9a4"></span><span class="leg3d l" style="left:4px;background:#4a6fa5"></span><span class="leg3d r" style="right:4px;background:#4a6fa5"></span></div>
+    </div>
+    <div class="player3d meet" id="ivan"><span class="nametag">Van ♪</span>
+      <div class="head3d"><span class="face front" style="background:#f2c9a4"><span class="eyes"><i></i><i></i></span><span class="mouth"></span></span><span class="face side" style="background:#1a1a2e"></span><span class="face top" style="background:#1a1a2e"></span></div>
+      <div class="body3d" style="background:#7ec8e3"><span class="arm3d l" style="left:-13px;background:#f2c9a4"></span><span class="arm3d r" style="right:-13px;background:#f2c9a4"></span><span class="leg3d l" style="left:4px;background:#2e4057"></span><span class="leg3d r" style="right:4px;background:#2e4057"></span></div>
+    </div>
+    <div id="intro-heart">💗</div>
+  </div>
+  <div id="intro-cap"><p class="line" id="intro-line">Every generated world starts empty…</p><p style="opacity:.85;font-size:13px;letter-spacing:2px">A CINEMATIC GIFT · HATSUKI × Van · 33 MONTHS</p></div>
+  <button id="skip-intro">Skip intro ⏭</button>
 </div>
 
 <nav aria-label="Story navigation">
@@ -75,7 +95,7 @@
 <!-- CINEMATIC SCENES -->
 <section id="cine"><div class="wrap">
   <h2 class="pixel reveal">🎬 SCENES I'D REPLAY</h2>
-  <p class="lead reveal">Not a highlight reel, Baby. Just three quiet scenes I keep coming back to — the kind nobody films, but nobody forgets either. <span style="opacity:.75">(✏️ Van: make these yours in index.html — search SCENE.)</span></p>
+  <p class="lead reveal">Not a highlight reel, Baby. Just three quiet scenes I keep coming back to — the kind nobody films, but nobody forgets either.</p>
 
   <article class="scene reveal"><div class="kicker pixel">SCENE 01 · MORNING · NO SCRIPT</div><h3 class="serif">The way an ordinary morning changes when it's you</h3>
   <p>There's nothing cinematic about a sleepy morning — messy hair, half-awake good mornings, yung boses mong bagong gising pa lang. Pero ewan ko ba. Kung may eksena akong paulit-ulit na ire-replay, iyon 'yon. Hindi dahil espesyal ang nangyari. Kundi dahil ikaw ang kasama ko sa pinakaordinaryong parte ng araw, at doon ko pinakanararamdaman na totoo tayo. Hindi lang tayo pang-magandang araw, Baby. Pang-totoong buhay tayo.</p>
@@ -142,5 +162,5 @@
 
 <button id="secret-star" aria-label="A secret star">★</button>
 <div class="toastbox" id="toast" role="status"></div>
-<script type="module" src="our-little-overworld/js/main.js?v=33"></script>
+<script type="module" src="our-little-overworld/js/main.js?v=34"></script>
 </body></html>

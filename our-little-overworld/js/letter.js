@@ -1,5 +1,4 @@
-// ✏️ EDIT ME — the anniversary letter, one entry per page.
-// Natural Taglish. Honest beats grand. Don't invent events — write what's true.
+// The anniversary letter — four pages, in Van's own words.
 export const LETTER_PAGES = [
   `Mahal kong Baby,
 
@@ -22,6 +21,6 @@ Happy 33rd monthsary. Mahal na mahal kita — ngayon, bukas, at sa bawat mundong
 ];
 export const HOME_MESSAGES = {
   sign: "Thank you for making ordinary days feel special.",
-  book: "Some people build houses. You turned ordinary coordinates into home. [EDIT ME — one true sentence about what home with her feels like.]",
+  book: "Some people build houses out of blocks. You built a home out of ordinary days — and I never want to move out.",
   lantern: "On your heavy days, remember this light: you are loved, you are enough, and you never have to carry everything alone. Nandito lang ako. 💛",
 };

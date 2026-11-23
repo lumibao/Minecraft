@@ -41,3 +41,9 @@ js/  config.js memories.js letter.js main.js world.js particles.js animations.js
 ## Update — scroll & tap ONLY + hard-coded Maximize
 This is a website, not a game: there are **no movement controls, no joystick, no WASD, nothing to "play"** — you scroll, and you tap/click things (blossom blocks, mobs, cottage, book, portal, beacon). The repo root `index.html` now opens THIS website directly (the old 3D prototype moved to `game.html` so it can't be opened by accident).
 **Maximize is hard-coded, not just a word:** the `window.__hardMaximize()` function in `js/interactions.js` forces real fullscreen + cinema letterbox bars in code, and pressing **ENTER OUR WORLD** calls it automatically before scrolling (`js/main.js`). The ⛶ MAXIMIZE nav button calls the same function. (Browsers require one tap/click before fullscreen is allowed — that's why it triggers on ENTER.)
+
+## Update — cinematic intro, tap-jump fix, no placeholders
+- **Cinematic intro (hard-coded CSS 3D):** after the loader, Hatsuki and Van voxel players (cube heads with front/side/top faces, swinging arms/legs, nametags) walk in from opposite sides of a sunset stage, meet in the middle, a heart appears, and four caption lines play. Skippable, reduced-motion aware. Code: `css/cinema.css` + `js/cinema.js`.
+- **Tap-jump fixed:** popups no longer steal scroll position — focus uses `preventScroll` and closing a popup restores focus without moving the page (`js/effects.js`); hover lifts are disabled on touch devices.
+- **No "EDIT ME" text anywhere on the visible site** — all copy reads as finished writing.
+- Professional polish pass in `css/cinema.css`: softer shadows, balanced headings, touch-safe active states.

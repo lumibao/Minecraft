@@ -4,6 +4,7 @@ import { initPetals } from './particles.js';
 import { initReveals, animateCounter, typewriter } from './animations.js';
 import { initMobs } from './mobs.js';
 import { initGrove, initHome, initLetter, initPortalAndBeacon, initMaximize } from './interactions.js';
+import { startIntro } from './cinema.js';
 
 document.title = `${CONFIG.project} — ${CONFIG.milestone}`;
 initWorld(); initPetals(); initMobs(); initGrove(); initHome(); initLetter(); initPortalAndBeacon(); initMaximize();
