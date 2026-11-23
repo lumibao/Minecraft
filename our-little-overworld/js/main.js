@@ -3,7 +3,7 @@ import { initWorld, runLoader } from './world.js';
 import { initPetals } from './particles.js';
 import { initReveals, animateCounter, typewriter } from './animations.js';
 import { initMobs } from './mobs.js';
-import { initGrove, initHome, initLetter, initPortalAndBeacon, initMaximize } from './interactions.js';
+import { initGrove, initHome, initLetter, initPortalAndBeacon, initMaximize, initRooms } from './interactions.js';
 import { startIntro } from './cinema.js';
 import { initBeacon3D } from './cinema3d.js';
 
@@ -15,7 +15,7 @@ window.__siteBooted = true;
 runLoader(() => { try { startIntro(); } catch (e) { document.getElementById('intro')?.remove(); } });
 
 try { initWorld(); } catch (e) { console.warn(e); }
-try { initPetals(); initMobs(); initGrove(); initHome(); initLetter(); initPortalAndBeacon(); initMaximize(); } catch (e) { console.warn(e); }
+try { initPetals(); initMobs(); initGrove(); initHome(); initRooms(); initLetter(); initPortalAndBeacon(); initMaximize(); } catch (e) { console.warn(e); }
 try { initBeacon3D(); } catch (e) { console.warn(e); }
 try {
   initReveals(() => { animateCounter(document.getElementById('count33'), CONFIG.months); typewriter(document.getElementById('spawn-type'), 'Thirty-three months of learning, growing, understanding, and choosing each other.'); });

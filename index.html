@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <title>Our Little Overworld — 33 Months Together</title>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<link rel="stylesheet" href="our-little-overworld/css/main.css?v=40"><link rel="stylesheet" href="our-little-overworld/css/world.css?v=40"><link rel="stylesheet" href="our-little-overworld/css/mobs.css?v=40"><link rel="stylesheet" href="our-little-overworld/css/animations.css?v=40"><link rel="stylesheet" href="our-little-overworld/css/sections.css?v=40"><link rel="stylesheet" href="our-little-overworld/css/interactions.css?v=40"><link rel="stylesheet" href="our-little-overworld/css/cinema.css?v=40"><link rel="stylesheet" href="our-little-overworld/css/responsive.css?v=40">
+<link rel="stylesheet" href="our-little-overworld/css/main.css?v=41"><link rel="stylesheet" href="our-little-overworld/css/world.css?v=41"><link rel="stylesheet" href="our-little-overworld/css/mobs.css?v=41"><link rel="stylesheet" href="our-little-overworld/css/animations.css?v=41"><link rel="stylesheet" href="our-little-overworld/css/sections.css?v=41"><link rel="stylesheet" href="our-little-overworld/css/interactions.css?v=41"><link rel="stylesheet" href="our-little-overworld/css/cinema.css?v=41"><link rel="stylesheet" href="our-little-overworld/css/responsive.css?v=41">
 </head><body>
 <div id="progress"></div><div id="cinema-bars"></div><div id="petals"></div>
 
@@ -71,6 +71,7 @@
   <h2 class="pixel">🌸 THE CHERRY GROVE</h2>
   <p class="lead">Thirty-three little blocks under the cherry blossoms — one for every month of us. Tap each one, Baby. No timer, no score. Just… us, month by month.</p>
   <div class="pond" aria-hidden="true"></div>
+  <div class="blossom-meter" role="status"><span id="blossom-fill"></span><b id="blossom-text">0 / 33 blossoms opened</b></div>
   <div class="grove-grid" id="grove-grid"></div>
   <div id="grove-heart" aria-hidden="true">💗</div>
   <p class="pixel" id="grove-caption">33 BLOCKS. 33 CHAPTERS. AND STILL, MY FAVORITE PERSON.</p>
@@ -87,6 +88,8 @@
     <div class="mob" data-mob="wolf" tabindex="0" role="button" aria-label="Wolf — tap for a message"><div class="stage"><div class="wolf" style="position:relative"><div class="head" style="margin:0 auto"><span class="p ear" style="left:4px"></span><span class="p ear" style="right:4px"></span><span class="p" style="width:7px;height:7px;background:#111;left:9px;top:16px"></span><span class="p" style="width:7px;height:7px;background:#111;right:9px;top:16px"></span><span class="p snout"></span></div><div class="wbody"><span class="p collar"></span><span class="p tail"></span></div></div></div><h3>🐺 Wolf</h3><small>tap me · loyal since day 1</small></div>
     <div class="mob" data-mob="slime" tabindex="0" role="button" aria-label="Slime — tap for a message"><div class="stage"><div class="slime"><span class="inner"></span><span class="p seye" style="left:18px"></span><span class="p seye" style="right:18px"></span></div></div><h3>🟢 Slime</h3><small>tap me · boing</small></div>
     <div class="mob" data-mob="enderman" tabindex="0" role="button" aria-label="Tall friend — tap for a message"><div class="stage"><div class="ender" style="position:relative"><div class="head"><span class="p peye" style="left:3px"></span><span class="p peye" style="right:3px"></span></div><div class="ebody"></div><span class="p arm" style="left:-8px"></span><span class="p arm" style="right:-8px;left:auto"></span></div></div><h3>💜 Tall Friend</h3><small>tap me · not scary, promise</small></div>
+    <div class="mob" data-mob="axolotl" tabindex="0" role="button" aria-label="Axolotl — tap for a message"><div class="stage"><div class="axolotl"><div class="abody"><span class="atail"></span><span class="ahead"></span><span class="gill" style="top:-4px"></span><span class="gill" style="top:8px"></span><span class="gill" style="top:20px"></span></div></div></div><h3>🩷 Axolotl</h3><small>tap me</small></div>
+    <div class="mob" data-mob="fox" tabindex="0" role="button" aria-label="Fox — tap for a message"><div class="stage"><div class="fox"><div class="fbody"><span class="ftail"></span><span class="fhead"><span class="fear" style="left:3px"></span><span class="fear" style="right:3px"></span></span></div></div></div><h3>🦊 Fox</h3><small>tap me</small></div>
     <div class="mob" data-mob="creeper" tabindex="0" role="button" aria-label="Friendly creeper — tap for a message"><div class="stage"><div class="creeper"><div class="head"><span class="p ceye" style="left:8px"></span><span class="p ceye" style="right:8px"></span><span class="p mouth"></span></div><div class="cbody"></div></div></div><h3>💚 Friendly Creeper</h3><small>tap me · sssafe</small></div>
   </div>
 </div></section>
@@ -127,6 +130,11 @@
     <div class="stone"></div>
   </div>
   <p style="color:#2e5b1e">🌷 flower boxes · 🪨 stone foundation · the door is always open for you</p>
+  <div class="rooms">
+    <button class="room-card" data-room="Kitchen"><span class="ricon">🍳</span><b>Kitchen</b><small>where "tikman mo nga" always means "I cooked this thinking of you"</small></button>
+    <button class="room-card" data-room="Bedroom"><span class="ricon">🛏️</span><b>Bedroom</b><small>our respawn point after every long day</small></button>
+    <button class="room-card" data-room="Balcony"><span class="ricon">☕</span><b>Balcony</b><small>for slow mornings, sunsets, and future plans</small></button>
+  </div>
 </div></section>
 <div class="mc-divider" aria-hidden="true"></div>
 
@@ -170,5 +178,5 @@
 // (or the Three.js CDN) is slow/blocked, reveal the site after 7s.
 setTimeout(function(){ if(!window.__siteBooted){ var l=document.getElementById('loader'); if(l) l.classList.add('done'); var i=document.getElementById('intro'); if(i) i.remove(); } },7000);
 </script>
-<script type="module" src="our-little-overworld/js/main.js?v=40"></script>
+<script type="module" src="our-little-overworld/js/main.js?v=41"></script>
 </body></html>
