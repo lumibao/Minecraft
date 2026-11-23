@@ -424,16 +424,32 @@ export function startCinema3D(onPhase) {
       poseJump(hatsuki); poseJump(van);
       heart.scale.setScalar(THREE.MathUtils.lerp(heart.scale.x, 1, 0.12)); heartGlow.intensity = 18;
       fireflies.pts.material.opacity = Math.min(0.9, fireflies.pts.material.opacity + dt);
+    } else if (t < 9.2) {
+      setPhase(3);
+      // ACT 3 — side by side, walking toward the camera as the sun goes down.
+      const k = easeInOut(clamp01((t - 5.1) / 4.1));
+      hatsuki.root.position.x = THREE.MathUtils.lerp(-1.05, -0.78, k);
+      van.root.position.x = THREE.MathUtils.lerp(1.05, 0.78, k);
+      hatsuki.root.position.z = THREE.MathUtils.lerp(-0.6, 3.4, k);
+      van.root.position.z = THREE.MathUtils.lerp(0.6, 3.4, k);
+      hatsuki.root.rotation.y = Math.PI - Math.sin(t * 2) * 0.06;
+      van.root.rotation.y = Math.PI + Math.sin(t * 2) * 0.06;
+      poseWalk(hatsuki, t, 7); poseWalk(van, t + 0.3, 7);
+      scene.background.lerp(new THREE.Color(0xd96a4e), 0.008);
+      scene.fog.color.copy(scene.background);
+      sunBall.position.y = Math.max(2.2, 6.2 - (t - 5.1) * 0.55);
+      sunGlow.position.y = sunBall.position.y;
     } else {
-      setPhase(2);
+      setPhase(4);
+      hatsuki.root.rotation.y = Math.PI; van.root.rotation.y = Math.PI;
       hatsuki.body.position.y = van.body.position.y = 0;
-      poseIdle(hatsuki, t, false); poseIdle(van, t, true);
+      poseIdle(hatsuki, t, true); poseIdle(van, t, true);
       hatsuki.head.rotation.y = Math.sin(t * 1.4) * 0.16; van.head.rotation.y = Math.cos(t * 1.2) * 0.16;
       heart.scale.setScalar(1 + Math.sin(t * 3) * 0.06); heart.rotation.y = Math.sin(t * 0.8) * 0.25;
     }
-    const turn = clamp01((t - 4.2) / 0.9);
-    hatsuki.root.rotation.y = Math.PI / 2 - turn * 0.5;
-    van.root.rotation.y = -Math.PI / 2 + turn * 0.5;
+    if (t < 5.1) { const turn = clamp01((t - 4.2) / 0.9);
+      hatsuki.root.rotation.y = Math.PI / 2 - turn * (Math.PI / 2 - 0.5) * 0.5 - turn * 0.5;
+      van.root.rotation.y = -Math.PI / 2 + turn * (Math.PI / 2 - 0.5) * 0.5 + turn * 0.5; }
     clouds.children.forEach(c => { c.position.x += c.userData.speed * dt; if (c.position.x > 28) c.position.x = -28; });
     // wildlife life: the pig ambles in a slow circle, the bee hovers & flaps
     wildlife.pig.rotation.y = t * 0.25; wildlife.pig.position.x = -6.5 + Math.sin(t * 0.25) * 1.6; wildlife.pig.position.z = 5.5 + Math.cos(t * 0.25) * 1.1;

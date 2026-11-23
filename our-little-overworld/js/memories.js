@@ -50,4 +50,6 @@ export const MOB_MESSAGES = {
   slime: "Even the simplest moments with you make me happy.",
   enderman: "Out of every world and every possibility, you're still the person I'd find.",
   creeper: "Don't worry, I promise this little surprise won't explode. It's just full of love.",
+  axolotl: "You make even the deepest waters feel safe. Gusto kong lumangoy sa lahat ng bukas kasama ka.",
+  fox: "Quick, clever, and a little bit makulit — thank you for keeping life playful, Baby.",
 };

@@ -24,3 +24,17 @@
 .ender{animation:headTilt 5s infinite}.ender .head{width:36px;height:36px;background:#181818;position:relative;margin:0 auto}.ender .peye{width:13px;height:6px;background:#c77dff;top:16px;box-shadow:0 0 8px #c77dff}.ender .ebody{width:26px;height:58px;background:#1d1d1d;margin:2px auto 0}.ender .arm{width:8px;height:64px;background:#1d1d1d;top:36px}
 /* Creeper-inspired (friendly) */
 .creeper{animation:walk 3.4s infinite}.creeper .head{width:46px;height:46px;background:repeating-linear-gradient(45deg,#58b368 0 10px,#4a9e58 10px 20px);position:relative;margin:0 auto}.creeper .ceye{width:10px;height:10px;background:#10240f;top:14px}.creeper .mouth{width:10px;height:16px;background:#10240f;left:18px;top:26px}.creeper .cbody{width:34px;height:44px;background:repeating-linear-gradient(45deg,#58b368 0 10px,#4a9e58 10px 20px);margin:0 auto}
+
+/* Axolotl */
+.axolotl{animation:bob 3.8s infinite}.axolotl .abody{width:64px;height:34px;background:#f49ac1;border-radius:6px;position:relative;margin:0 auto}
+.axolotl .ahead{width:36px;height:30px;background:#f7b1cd;position:absolute;right:-24px;top:2px}
+.axolotl .gill{width:8px;height:18px;background:#e56aa0;position:absolute;right:-32px}
+.axolotl .atail{width:26px;height:16px;background:#e56aa0;position:absolute;left:-24px;top:9px;border-radius:8px}
+/* Fox */
+.fox{animation:sway 5s infinite}.fox .fbody{width:62px;height:32px;background:#e8862e;position:relative;margin:0 auto}
+.fox .fhead{width:34px;height:30px;background:#f09540;position:absolute;right:-24px;top:-4px}
+.fox .fear{width:9px;height:14px;background:#e8862e;position:absolute;top:-16px}
+.fox .ftail{width:30px;height:18px;background:#f09540;position:absolute;left:-28px;top:4px;transform:rotate(-18deg)}
+.fox .ftail::after{content:"";position:absolute;left:-8px;top:3px;width:14px;height:12px;background:#fff}
+.mob{box-shadow:0 10px 22px rgba(0,0,0,.22)}
+.mob .stage::after{content:"";position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:74px;height:12px;background:radial-gradient(ellipse,rgba(0,0,0,.35),transparent 70%)}
