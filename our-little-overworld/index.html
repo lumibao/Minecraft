@@ -153,5 +153,10 @@
 
 <button id="secret-star" aria-label="A secret star">★</button>
 <div class="toastbox" id="toast" role="status"></div>
+<script>
+// Watchdog: never trap her on the loading screen. If the main module
+// (or the Three.js CDN) is slow/blocked, reveal the site after 7s.
+setTimeout(function(){ if(!window.__siteBooted){ var l=document.getElementById('loader'); if(l) l.classList.add('done'); var i=document.getElementById('intro'); if(i) i.remove(); } },7000);
+</script>
 <script type="module" src="js/main.js"></script>
 </body></html>
