@@ -69,3 +69,5 @@ All JS syntax-checked; 33 flowers, 33 books, 5 chests, 7 locations, 8 achievemen
 
 ## 🎬 Also in this repo: OUR LITTLE OVERWORLD (new — cinematic website)
 A separate, non-game anniversary website lives in [`our-little-overworld/`](our-little-overworld/) — CSS-voxel mobs, 33 tappable Cherry-Grove month blocks, a 4-page enchanted-book letter, three cinematic Taglish scenes about her, portal → golden beacon finale, and a ⛶ Maximize/Cinema mode. See `our-little-overworld/README.md`. The playable 3D game above remains untouched. Open `our-little-overworld/index.html` to view.
+
+> **SITE ROOT = WEBSITE:** the repo-root `index.html` IS the Our Little Overworld website itself (scroll + tap only). The old playable 3D prototype is archived in `archive-old-game/` and is no longer the homepage — so GitHub Pages at `/Minecraft/` serves the website, never the game. If your phone still shows the old game, open `https://lumibao.github.io/Minecraft/?v=33` once (cache-buster) or close/reopen the tab.
