@@ -1,0 +1,40 @@
+/* Cherry Grove */
+#memories{background:linear-gradient(#f7b267,#F4B7CB 45%,#80A956 78%)}
+.chapter{margin:34px auto 8px;color:#5a2438}
+.grove-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:12px;max-width:760px;margin:18px auto}
+.blk{aspect-ratio:1;border:3px solid #0007;cursor:pointer;position:relative;transition:transform .2s var(--ease),filter .2s;font-family:'Courier New',monospace;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;text-shadow:1px 1px 0 #0008}
+.blk:hover{transform:translateY(-6px) scale(1.07);filter:brightness(1.15)}
+.blk.c1{background:linear-gradient(#f78fb8 0 55%,#c96a92 55%)}.blk.c2{background:linear-gradient(#f4b7cb 0 55%,#d68cae 55%)}.blk.c3{background:linear-gradient(#ffd97a 0 55%,#d9a53a 55%);color:#3a2700;text-shadow:none}
+.blk.found{outline:3px solid #fff;filter:brightness(1.2)}.blk.found::after{content:"♥";position:absolute;top:-10px;right:-6px;color:#ff4d7e;font-size:18px}
+#grove-heart{font-size:clamp(60px,14vw,120px);opacity:0;transform:scale(.4);transition:all 1s var(--ease);margin-top:16px}
+#grove-heart.show{opacity:1;transform:scale(1)}
+.pond{width:150px;height:86px;background:#4db8e8;border-radius:50%/60%;margin:14px auto;position:relative;box-shadow:inset 0 0 24px #ffffff70}
+/* Cinematic scenes */
+#cine{background:#0d1526}
+.scene{max-width:860px;margin:0 auto 64px;text-align:left;background:linear-gradient(160deg,#ffffff10,#ffffff05);border:1px solid #ffffff20;padding:clamp(22px,4vw,44px);border-radius:6px;position:relative}
+.scene::before{content:"";position:absolute;inset:10px;border:1px dashed #ffffff1e;pointer-events:none}
+.scene .kicker{color:var(--lantern);letter-spacing:3px;font-size:12px}
+.scene h3{font-size:clamp(22px,4vw,34px);margin:8px 0 12px}
+.scene p{font-family:Georgia,serif;font-size:clamp(16px,2.4vw,19px);line-height:1.85;color:#eef3ff}
+.scene .shot{color:#9fc7e8;font-size:13px;font-style:italic;margin-top:14px}
+/* Home */
+#house{background:linear-gradient(#83C9E8,#cfeeff 52%,#80A956 52.2%)}
+.cottage{width:min(430px,88vw);margin:26px auto;position:relative}
+.cottage .roof{width:0;margin:0 auto;border-left:calc(min(430px,88vw)/2) solid transparent;border-right:calc(min(430px,88vw)/2) solid transparent;border-bottom:110px solid #6e3520}
+.cottage .walls{background:repeating-linear-gradient(0deg,#A77849 0 18px,#96683c 18px 36px);height:230px;border:4px solid #5f3d1e;position:relative}
+.cottage .stone{height:26px;background:repeating-linear-gradient(90deg,#8a8a8a 0 34px,#767676 34px 68px)}
+.cottage .win2{position:absolute;width:52px;height:52px;background:#ffe9a8;top:54px;border:4px solid #5f3d1e;box-shadow:0 0 26px #ffc96b;cursor:pointer;animation:glowPulse 3s infinite}
+.cottage .door{position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:62px;height:104px;background:#6b4423;border:4px solid #4a2d13}
+.cottage .chimney{position:absolute;right:16%;top:-132px;width:34px;height:74px;background:#8a8a8a}
+.smoke{position:absolute;width:16px;height:16px;border-radius:50%;background:#ffffffb5;animation:smokeUp 3s infinite}
+.hotspot{position:absolute;z-index:4;background:#2b2118ee;color:#ffe9a8;border:2px solid var(--lantern);padding:9px 13px;border-radius:8px;font-size:14px;transition:transform .2s}
+.hotspot:hover{transform:scale(1.1)}
+body.lantern-glow::after{content:"";position:fixed;inset:0;background:radial-gradient(circle,#ffc96b55,transparent 65%);pointer-events:none;z-index:120;animation:glowPulse 1.2s 3}
+/* Book */
+#letter{background:linear-gradient(#241536,#503A79)}
+.book3d{width:190px;height:250px;margin:22px auto;cursor:pointer;position:relative;transform-style:preserve-3d;transition:transform 1s var(--ease)}
+.book3d:hover{transform:rotateY(-18deg) translateY(-8px)}
+.book3d .cover{position:absolute;inset:0;background:linear-gradient(135deg,#4a2c14,#6b4423);border:5px solid #FFC96B;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px;text-align:center}
+.book-page{background:#f6e7c8;color:#3a2a18;padding:26px;max-height:52vh;overflow:auto;text-align:left}
+.book-page p{font-family:Georgia,serif;line-height:1.85;white-space:pre-wrap}
+.pager{display:flex;gap:10px;justify-content:center;margin-top:14px;flex-wrap:wrap}

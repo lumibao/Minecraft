@@ -1,0 +1,2 @@
+@media(max-width:640px){section{padding:72px 14px}nav a,nav button{font-size:12px;padding:8px 8px}.mob .stage{height:110px}.grove-grid{grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:9px}.portal{width:140px;height:210px}.beacon .beam{height:210px}.tree{display:none}.tree.keep{display:block;transform:scale(.75);transform-origin:bottom left}.cottage-mini{transform:scale(.8);transform-origin:bottom right}.scene{text-align:left}}
+@media(min-width:1100px){.grove-grid{grid-template-columns:repeat(11,1fr)}}
