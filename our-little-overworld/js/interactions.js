@@ -10,8 +10,8 @@ export function initGrove() {
     const h = document.createElement('h3'); h.className = 'chapter pixel'; h.textContent = `${ch.title} · ${ch.range}`; h.style.gridColumn = '1/-1'; grid.appendChild(h);
     MESSAGES.forEach((m, i) => { if (Math.ceil((i + 1) / 11) !== ch.id) return;
       const b = document.createElement('button'); b.className = 'blk c' + ch.id; b.textContent = i + 1; b.setAttribute('aria-label', `Open month ${i + 1} message`);
-      b.onclick = e => { found.add(i + 1); b.classList.add('found'); burst(e.clientX, e.clientY); popup(`🌸 MONTH ${i + 1} / 33`, m, `<p style="opacity:.8">Discovered: ${found.size} / 33</p>`);
-        if (found.size === 33) setTimeout(() => { document.getElementById('grove-heart').classList.add('show'); toast('💛 33 BLOCKS. 33 CHAPTERS. AND STILL, MY FAVORITE PERSON.'); }, 600); };
+      b.onclick = e => { found.add(i + 1); b.classList.add('found'); burst(e.clientX, e.clientY); popup(`🌸 MONTH ${i + 1} / 33`, m, `<p style="opacity:.8">Month ${i + 1} of our 33 — tap another blossom block whenever you're ready 🌸</p>`);
+        if (found.size === 33) setTimeout(() => { document.getElementById('grove-heart').classList.add('show'); toast('💛 33 BLOCKS. 33 CHAPTERS. AND STILL, MY FAVORITE PERSON.'); }, 600); }; // scroll-and-tap only — no gameplay
       grid.appendChild(b); });
   });
 }
@@ -42,8 +42,16 @@ export function initPortalAndBeacon() {
 }
 export function initMaximize() {
   const btn = document.getElementById('max-btn');
-  btn.onclick = async () => { const on = document.body.classList.toggle('cinema');
-    try { if (on && !document.fullscreenElement) await document.documentElement.requestFullscreen(); if (!on && document.fullscreenElement) await document.exitFullscreen(); } catch (e) {}
-    btn.textContent = on ? '⛶ EXIT CINEMA' : '⛶ MAXIMIZE'; toast(on ? '🎬 Cinema Mode — maximize the kilig. Press the button again to exit.' : 'Back to normal view.'); };
+  // HARD-CODED MAXIMIZE — forces fullscreen + cinema letterbox in code, not just a label.
+  window.__hardMaximize = async (on = true) => {
+    document.body.classList.toggle('cinema', on);
+    btn.textContent = on ? '⛶ EXIT CINEMA' : '⛶ MAXIMIZE';
+    try {
+      if (on && !document.fullscreenElement) await document.documentElement.requestFullscreen();
+      if (!on && document.fullscreenElement) await document.exitFullscreen();
+    } catch (e) { /* browsers require a tap/click first; cinema bars still apply */ }
+    if (on) toast('🎬 Maximize ON — scroll lang, tap-tap lang, enjoy Baby 💛');
+  };
+  btn.onclick = () => window.__hardMaximize(!document.body.classList.contains('cinema'));
   document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement) { document.body.classList.remove('cinema'); btn.textContent = '⛶ MAXIMIZE'; } });
 }

@@ -8,5 +8,11 @@ import { initGrove, initHome, initLetter, initPortalAndBeacon, initMaximize } fr
 document.title = `${CONFIG.project} — ${CONFIG.milestone}`;
 initWorld(); initPetals(); initMobs(); initGrove(); initHome(); initLetter(); initPortalAndBeacon(); initMaximize();
 initReveals(() => { animateCounter(document.getElementById('count33'), CONFIG.months); typewriter(document.getElementById('spawn-type'), 'Thirty-three months of learning, growing, understanding, and choosing each other.'); });
-document.getElementById('enter-btn').addEventListener('click', e => { import('./particles.js').then(m => m.burst(e.clientX, e.clientY)); document.getElementById('spawn').scrollIntoView({ behavior: 'smooth' }); });
+// ENTER = hard-coded MAXIMIZE (fullscreen + cinema bars) THEN scroll.
+// This is a website: scroll + tap only. No movement, no gameplay controls.
+document.getElementById('enter-btn').addEventListener('click', async e => {
+  import('./particles.js').then(m => m.burst(e.clientX, e.clientY));
+  await window.__hardMaximize(true);
+  document.getElementById('spawn').scrollIntoView({ behavior: 'smooth' });
+});
 runLoader();
