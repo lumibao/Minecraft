@@ -1,0 +1,13 @@
+*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;background:#0b1026;font-family:'Segoe UI',system-ui,sans-serif;color:#fff;-webkit-user-select:none;user-select:none}
+#game-canvas{position:fixed;inset:0;display:block}
+.hidden{display:none!important}
+button{font-family:inherit;cursor:pointer}
+@font-face{font-family:'Pixel';src:local('Courier New')}
+.pixel{font-family:'Courier New',monospace;font-weight:700;letter-spacing:1px;text-shadow:2px 2px 0 rgba(0,0,0,.55)}
+.mc-btn{background:linear-gradient(#8b8b8b,#6f6f6f 45%,#5a5a5a);border:2px solid #000;box-shadow:inset 2px 2px 0 rgba(255,255,255,.45),inset -2px -2px 0 rgba(0,0,0,.4);color:#fff;padding:12px 22px;font-size:16px;min-height:48px}
+.mc-btn:hover{filter:brightness(1.18)}.mc-btn:active{transform:translateY(2px)}
+.mc-btn.green{background:linear-gradient(#6abe30,#4e9a1f 45%,#3d7d16)}
+.mc-btn.gold{background:linear-gradient(#f2c94c,#d9a51f 45%,#b8860b);color:#231a00}
+#loading{position:fixed;inset:0;background:linear-gradient(#1a2340,#0b1026);z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;padding:20px}
+.bar-wrap{width:min(420px,80vw);height:22px;border:3px solid #000;background:#222}
+#bar{height:100%;width:0%;background:repeating-linear-gradient(90deg,#6abe30 0 14px,#5aa828 14px 28px);transition:width .3s}
