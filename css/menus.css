@@ -1,0 +1,12 @@
+#menu{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:linear-gradient(rgba(10,15,40,.35),rgba(10,15,40,.75));text-align:center;padding:20px}
+#menu h1{font-size:clamp(28px,6vw,58px);color:#fff;line-height:1.05}
+#menu h1 span{color:#ffb7d1}#menu .sub{color:#ffe9a8;font-size:clamp(14px,2.5vw,22px)}
+#menu .quote{max-width:640px;color:#eaf4ff;font-style:italic;opacity:.95;line-height:1.5}
+.menu-col{display:flex;flex-direction:column;gap:10px;width:min(340px,86vw)}
+#pause,#panel-overlay{position:fixed;inset:0;z-index:60;background:rgba(5,8,20,.78);display:flex;align-items:center;justify-content:center;padding:16px}
+.panel{background:#2b2118;border:3px solid #000;box-shadow:inset 0 0 0 3px #6b543a;max-width:680px;width:100%;max-height:86vh;overflow:auto;padding:22px;border-radius:4px}
+.panel h2{color:#ffe9a8;margin-bottom:12px}.panel p{line-height:1.65;white-space:pre-wrap}
+.book-page{background:#f6e7c8;color:#3a2a18;padding:24px;border:3px solid #8a6d3f;line-height:1.7;white-space:pre-wrap;font-family:Georgia,serif;max-height:55vh;overflow:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.card{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.18);padding:12px;border-radius:6px}.card.locked{opacity:.45}
+.settings-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.12)}
