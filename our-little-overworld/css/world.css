@@ -36,3 +36,19 @@
 .beacon .core{width:64px;height:64px;margin:-6px auto 0;background:#FFC96B;transform:rotate(45deg);box-shadow:0 0 44px #FFC96b;animation:glowPulse 2s infinite}
 .beacon .base{width:120px;height:26px;background:linear-gradient(#c9a227,#8a6d1f);margin-top:14px;border:3px solid #0006}
 .island{position:absolute;background:#2a2140;border-top:10px solid #503A79;animation:floaty 6s infinite;z-index:1}
+
+/* Minecraft HUD: hearts/hunger, XP bar with our level, hotbar */
+.mc-hud{margin:22px auto 4px;max-width:430px;image-rendering:pixelated}
+.hud-row{display:flex;justify-content:space-between;font-size:15px;letter-spacing:1px;padding:0 4px}
+.hearts{color:#ff3b4e;text-shadow:1px 1px 0 #5a0d14}
+.hunger{filter:saturate(1.1)}
+.xpbar{position:relative;height:12px;background:#2b2b2b;border:2px solid #000;margin:5px 0 7px}
+.xpfill{position:absolute;inset:0;width:100%;background:repeating-linear-gradient(90deg,#7ee83a 0 10px,#63c92e 10px 20px)}
+.xplvl{position:absolute;left:50%;top:-17px;transform:translateX(-50%);color:#7ee83a;font-family:'Courier New',monospace;font-size:19px;text-shadow:2px 2px 0 #1d3a08}
+.hotbar{display:flex;justify-content:center;gap:4px}
+.hotbar span{width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:#8b8b8bcc;border:2px solid #373737;box-shadow:inset 2px 2px 0 #ffffff55,inset -2px -2px 0 #00000055;font-size:19px}
+.hotbar span.sel{border-color:#fff;box-shadow:0 0 0 2px #ffffff88,inset 2px 2px 0 #ffffff55}
+/* grass-block divider strip between chapters */
+.mc-divider{height:34px;background:linear-gradient(#80A956 0 38%,#8B5A38 38%);background-size:auto;position:relative;z-index:4;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.mc-divider::after{content:"";position:absolute;inset:38% 0 0;background:repeating-linear-gradient(90deg,rgba(0,0,0,.13) 0 11px,transparent 11px 22px),repeating-linear-gradient(0deg,rgba(0,0,0,.09) 0 8px,transparent 8px 16px)}
+@media(max-width:640px){.hotbar span{width:34px;height:34px;font-size:16px}.hearts,.hunger{font-size:12px}}

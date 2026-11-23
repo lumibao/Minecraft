@@ -49,7 +49,8 @@ function pixelTexture(top, side, size = 16) {
   const g = cv.getContext('2d');
   g.fillStyle = side; g.fillRect(0, 0, size, size);
   g.fillStyle = top; g.fillRect(0, 0, size, size * 0.32);
-  for (let i = 0; i < 26; i++) {
+  g.fillStyle = 'rgba(0,0,0,0.16)'; g.fillRect(0, size * 0.32, size, 2);
+  for (let i = 0; i < 60; i++) {
     g.fillStyle = Math.random() > 0.5 ? 'rgba(0,0,0,0.10)' : 'rgba(255,255,255,0.08)';
     g.fillRect((Math.random() * size) | 0, (Math.random() * size) | 0, 2, 2);
   }
@@ -269,6 +270,38 @@ function buildGroundDetail(scene) {
   }
 }
 
+
+/* Little voxel wildlife + props — the world should feel lived in. */
+function buildPig(x, z) {
+  const g = new THREE.Group(); const pink = solid(0xf2a0b5), dark = solid(0xd97f96);
+  g.add(box(0.9, 0.6, 0.55, pink, 0, 0.55, 0));
+  g.add(box(0.55, 0.5, 0.5, pink, 0.62, 0.68, 0));
+  g.add(box(0.3, 0.2, 0.06, dark, 0.92, 0.62, 0));
+  [[-0.3, -0.18], [0.3, -0.18], [-0.3, 0.18], [0.3, 0.18]].forEach(([lx, lz]) => g.add(box(0.16, 0.3, 0.16, dark, lx, 0.15, lz)));
+  g.add(box(0.08, 0.3, 0.08, dark, -0.52, 0.72, 0)); // tail
+  g.position.set(x, 0, z); g.userData.kind = 'pig'; return g;
+}
+function buildBee(x, y, z) {
+  const g = new THREE.Group();
+  g.add(box(0.55, 0.4, 0.4, new THREE.MeshLambertMaterial({ map: pixelTexture('#ffd94d', '#2b2b2b') }), 0, 0, 0));
+  const wing = box(0.3, 0.06, 0.24, new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.75 }), 0, 0.26, 0);
+  g.add(wing); g.userData = { kind: 'bee', wing, baseY: y };
+  g.position.set(x, y, z); return g;
+}
+function buildProps(scene) {
+  const chest = new THREE.Group();
+  chest.add(box(0.9, 0.55, 0.6, solid(0xa77849), 0, 0.28, 0));
+  chest.add(box(0.94, 0.2, 0.64, solid(0x8a5f30), 0, 0.65, 0));
+  chest.add(box(0.14, 0.2, 0.06, solid(0xd9d9d9), 0, 0.5, 0.32));
+  chest.position.set(3.4, 0, 5.4); chest.rotation.y = -0.5; scene.add(chest);
+  const table = new THREE.Group(); // crafting table beside the path
+  table.add(box(0.95, 0.95, 0.95, new THREE.MeshLambertMaterial({ map: pixelTexture('#b58a52', '#7a5a30') }), 0, 0.48, 0));
+  table.position.set(-3.6, 0, 4.6); scene.add(table);
+  const pig = buildPig(-6.5, 5.5); scene.add(pig);
+  const bee = buildBee(5.5, 2.6, -3); scene.add(bee);
+  return { pig, bee };
+}
+
 /* ============================ CAMERA DIRECTION ============================ */
 // Three shots, cross-blended by the film clock:
 //   SHOT A (0–2.2s)   wide establishing — the empty world, breathing room
@@ -336,12 +369,13 @@ export function startCinema3D(onPhase) {
   scene.add(new THREE.HemisphereLight(0xffd9b0, 0x3a5f2a, 1.05));
   const sun = new THREE.DirectionalLight(0xffb37a, 2.0); sun.position.set(-8, 10, 6); scene.add(sun);
   const rim = new THREE.DirectionalLight(0x83c9e8, 0.5); rim.position.set(6, 4, -8); scene.add(rim);
-  const sunBall = new THREE.Mesh(new THREE.SphereGeometry(1.6, 16, 12), new THREE.MeshBasicMaterial({ color: 0xffe9a8 }));
-  sunBall.position.set(-13, 5.5, -22); scene.add(sunBall);
+  const sunBall = box(3.4, 3.4, 0.4, new THREE.MeshBasicMaterial({ color: 0xffe9a8 }), -13, 6.2, -22); scene.add(sunBall);
+  const sunGlow = box(4.6, 4.6, 0.2, new THREE.MeshBasicMaterial({ color: 0xffd98a, transparent: true, opacity: 0.35 }), -13, 6.2, -22.4); scene.add(sunGlow);
 
   const river = buildTerrain(scene);
   buildGroundDetail(scene);
   buildFlowers(scene); buildFence(scene); buildCottage(scene);
+  const wildlife = buildProps(scene);
   [[-7, -4, 1], [7, -4, 1], [-9, 3, 0], [9, 3, 0], [-5, 7, 1], [5, 7, 1], [-12, 1, 1], [12, -2, 0]]
     .forEach(([x, z, c]) => scene.add(buildTree(x, z, !!c, 0.9 + Math.random() * 0.35)));
   [[-2.3, -3], [2.3, -3], [-2.3, 2], [2.3, 2], [-2.3, 7], [2.3, 7]].forEach(([x, z]) => buildLantern(x, z, scene));
@@ -358,6 +392,7 @@ export function startCinema3D(onPhase) {
 
   const heart = voxelHeart(0.24); heart.position.set(0, 3.6, 0); heart.scale.setScalar(0.001); scene.add(heart);
   const heartGlow = new THREE.PointLight(0xff6b9d, 0, 12); heartGlow.position.set(0, 3.4, 1); scene.add(heartGlow);
+  const heartMotes = buildParticles(scene, Quality.mobile ? 22 : 44, 0xff8fb3, 0.15, { x: 3, y: 4.5, z: 3 }, true);
 
   function resize() {
     const w = canvas.clientWidth || innerWidth, h = canvas.clientHeight || innerHeight;
@@ -400,6 +435,12 @@ export function startCinema3D(onPhase) {
     hatsuki.root.rotation.y = Math.PI / 2 - turn * 0.5;
     van.root.rotation.y = -Math.PI / 2 + turn * 0.5;
     clouds.children.forEach(c => { c.position.x += c.userData.speed * dt; if (c.position.x > 28) c.position.x = -28; });
+    // wildlife life: the pig ambles in a slow circle, the bee hovers & flaps
+    wildlife.pig.rotation.y = t * 0.25; wildlife.pig.position.x = -6.5 + Math.sin(t * 0.25) * 1.6; wildlife.pig.position.z = 5.5 + Math.cos(t * 0.25) * 1.1;
+    wildlife.bee.position.y = wildlife.bee.userData.baseY + Math.sin(t * 2.2) * 0.25;
+    wildlife.bee.position.x = 5.5 + Math.sin(t * 0.6) * 1.8; wildlife.bee.userData.wing.rotation.z = Math.sin(t * 28) * 0.5;
+    // heart particles drift upward once the heart appears
+    if (t > 4.4) stepParticles(heartMotes, t, dt);
     stepParticles(petals, t, dt); stepParticles(fireflies, t, dt);
     river.material.opacity = 0.78 + Math.sin(t * 1.7) * 0.1;
     directCamera(camera, t);
