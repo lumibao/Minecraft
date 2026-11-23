@@ -7,7 +7,7 @@ import { initGrove, initHome, initLetter, initPortalAndBeacon, initMaximize } fr
 import { startIntro } from './cinema.js';
 
 document.title = `${CONFIG.project} — ${CONFIG.milestone}`;
-initWorld(); initPetals(); initMobs(); initGrove(); initHome(); initLetter(); initPortalAndBeacon(); initMaximize();
+initWorld(); initPetals(); initMobs(); initGrove(); initHome(); initLetter(); initPortalAndBeacon(); initMaximize(); initBeacon3D();
 initReveals(() => { animateCounter(document.getElementById('count33'), CONFIG.months); typewriter(document.getElementById('spawn-type'), 'Thirty-three months of learning, growing, understanding, and choosing each other.'); });
 // ENTER = hard-coded MAXIMIZE (fullscreen + cinema bars) THEN scroll.
 // This is a website: scroll + tap only. No movement, no gameplay controls.

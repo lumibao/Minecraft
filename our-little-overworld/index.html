@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Our Little Overworld — 33 Months Together</title>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/world.css"><link rel="stylesheet" href="css/mobs.css"><link rel="stylesheet" href="css/animations.css"><link rel="stylesheet" href="css/sections.css"><link rel="stylesheet" href="css/interactions.css"><link rel="stylesheet" href="css/responsive.css">
 </head><body>
 <div id="progress"></div><div id="cinema-bars"></div><div id="petals"></div>
@@ -17,18 +18,7 @@
 <div id="intro" role="dialog" aria-label="Cinematic intro: Hatsuki and Van meet in our world">
   <span class="bars"></span>
   <span class="intro-tree" style="left:8%">🌸</span><span class="intro-tree" style="right:10%">🌳</span>
-  <div class="intro-stage">
-    <div class="intro-ground"></div>
-    <div class="player3d" id="ihat"><span class="nametag">♥ Hatsuki</span>
-      <div class="head3d"><span class="face front" style="background:#f2c9a4"><span class="eyes"><i></i><i></i></span><span class="mouth"></span></span><span class="face side" style="background:#3a2a1a"></span><span class="face top" style="background:#3a2a1a"></span></div>
-      <div class="body3d" style="background:#ff8fb3"><span class="arm3d l" style="left:-13px;background:#f2c9a4"></span><span class="arm3d r" style="right:-13px;background:#f2c9a4"></span><span class="leg3d l" style="left:4px;background:#4a6fa5"></span><span class="leg3d r" style="right:4px;background:#4a6fa5"></span></div>
-    </div>
-    <div class="player3d meet" id="ivan"><span class="nametag">Van ♪</span>
-      <div class="head3d"><span class="face front" style="background:#f2c9a4"><span class="eyes"><i></i><i></i></span><span class="mouth"></span></span><span class="face side" style="background:#1a1a2e"></span><span class="face top" style="background:#1a1a2e"></span></div>
-      <div class="body3d" style="background:#7ec8e3"><span class="arm3d l" style="left:-13px;background:#f2c9a4"></span><span class="arm3d r" style="right:-13px;background:#f2c9a4"></span><span class="leg3d l" style="left:4px;background:#2e4057"></span><span class="leg3d r" style="right:4px;background:#2e4057"></span></div>
-    </div>
-    <div id="intro-heart">💗</div>
-  </div>
+  <div class="intro-stage"><canvas id="intro-canvas" aria-label="3D cinematic: Hatsuki and Van walk toward each other in a voxel world"></canvas></div>
   <div id="intro-cap"><p class="line" id="intro-line">Every generated world starts empty…</p><p style="opacity:.85;font-size:13px;letter-spacing:2px">A CINEMATIC GIFT · HATSUKI × Van · 33 MONTHS</p></div>
   <button id="skip-intro">Skip intro ⏭</button>
 </div>
@@ -150,6 +140,7 @@
   <div class="wrap reveal" id="final-msg">
     <h2 class="pixel">🌌 OUR LITTLE END DIMENSION</h2>
     <p class="lead serif" style="font-size:20px">“Even at the edge of every world, I'd still want you beside me.”</p>
+    <canvas id="beacon3d" width="640" height="420" aria-label="3D golden beacon on a floating island"></canvas>
     <div class="beacon" id="beacon" role="button" tabindex="0" aria-label="Activate the golden beacon"><div class="beam"></div><div class="core"></div><div class="base"></div></div>
     <p class="pixel" style="color:#FFC96B;margin-top:16px">▲ TAP THE BEACON ▲</p>
     <h2 class="pixel" style="color:#FFC96B;margin-top:30px">33 MONTHS, AND I'M STILL CHOOSING YOU.</h2>

@@ -47,3 +47,9 @@ This is a website, not a game: there are **no movement controls, no joystick, no
 - **Tap-jump fixed:** popups no longer steal scroll position — focus uses `preventScroll` and closing a popup restores focus without moving the page (`js/effects.js`); hover lifts are disabled on touch devices.
 - **No "EDIT ME" text anywhere on the visible site** — all copy reads as finished writing.
 - Professional polish pass in `css/cinema.css`: softer shadows, balanced headings, touch-safe active states.
+
+## Update — REAL 3D (WebGL), not CSS pretending to be 3D
+- **Cinematic intro is now a true Three.js film** (`js/cinema3d.js`, ~300 lines of scene code): instanced voxel terrain, golden path, cherry + oak voxel trees, glowing lanterns with point lights, drifting box clouds, falling cherry-petal particles, sunset lighting rig, and a cinematic dolly camera. **Hatsuki & Van are real 3D voxel players** (geometry heads with hair/eyes/blush, articulated arm/leg pivots) who walk toward each other with a walk cycle, meet, jump together, raise their arms, and a voxel heart + pink glow appears. Captions are directed by the 3D timeline phases. Skippable; graceful fallback if WebGL is unavailable.
+- **Finale beacon is also real 3D**: a lazy-loaded (IntersectionObserver) floating-island scene with rotating golden crystal, pulsing beam, voxel heart and stars — it renders only when scrolled into view, for mobile performance.
+- The broken CSS-player intro from the previous version is removed entirely. The nav is hidden while the film plays.
+- Note on file size: professional code is measured by what it does, not megabytes — a single 2MB JS file would make her phone load slowly. Every file here stays lean (<2MB) while the 3D module carries the heavy, hand-written scene logic.
