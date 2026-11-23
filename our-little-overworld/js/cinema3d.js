@@ -66,7 +66,8 @@ function nametag(text, color = '#ffffff') {
   g.font = 'bold 30px Courier New, monospace'; g.textAlign = 'center'; g.textBaseline = 'middle';
   g.fillStyle = color; g.fillText(text, 128, 33);
   const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(cv), transparent: true, depthWrite: false }));
-  s.scale.set(2.4, 0.6, 1); return s;
+  const w = matchMedia('(pointer: coarse)').matches ? 1.9 : 2.4;
+  s.scale.set(w, w * 0.25, 1); return s;
 }
 function voxelHeart(scale = 0.22, color = 0xff4d7e) {
   const rows = ['01100110', '11111111', '11111111', '11111111', '01111110', '00111100', '00011000'];
@@ -244,12 +245,23 @@ const SHOTS = [
   { pos: new THREE.Vector3(4.5, 2.4, 12.5), look: new THREE.Vector3(0, 1.6, 0) },
   { pos: new THREE.Vector3(0, 2.1, 9.2), look: new THREE.Vector3(0, 1.9, 0) },
 ];
+function frameForAspect(camera) {
+  // Returns how far to widen/pull back so BOTH actors stay in frame.
+  const a = camera.aspect || 1;
+  if (a >= 1) return { fov: 46, pull: 1, lift: 0 };
+  if (a >= 0.75) return { fov: 54, pull: 1.3, lift: 0.3 };
+  return { fov: 63, pull: 1.62, lift: 0.55 }; // tall portrait phones
+}
 function directCamera(camera, t) {
   const a = SHOTS[0], b = SHOTS[1], c = SHOTS[2];
   const mix = (s, e, k, from, to) => { const f = new THREE.Vector3(), l = new THREE.Vector3(); f.lerpVectors(from.pos, to.pos, k); l.lerpVectors(from.look, to.look, k); camera.position.copy(f); camera.lookAt(l); };
   if (t < 2.2) { mix(0, 2.2, easeInOut(t / 2.2) * 0.25, a, b); }
   else if (t < 4.2) { const k = easeInOut((t - 2.2) / 2); const f = new THREE.Vector3().lerpVectors(new THREE.Vector3().lerpVectors(a.pos, b.pos, 0.25), b.pos, k); camera.position.copy(f); camera.lookAt(new THREE.Vector3().lerpVectors(new THREE.Vector3().lerpVectors(a.look, b.look, 0.25), b.look, k)); }
   else { const k = easeInOut(clamp01((t - 4.2) / 1.6)); const f = new THREE.Vector3().lerpVectors(b.pos, c.pos, k); f.x += Math.sin(t * 0.4) * 0.25; f.y += Math.sin(t * 0.55) * 0.1; camera.position.copy(f); camera.lookAt(new THREE.Vector3().lerpVectors(b.look, c.look, k)); }
+  // portrait compensation — applied after every shot so no shot can crop them
+  const fr = frameForAspect(camera);
+  camera.position.z *= fr.pull; camera.position.y += fr.lift;
+  if (camera.fov !== fr.fov) { camera.fov = fr.fov; camera.updateProjectionMatrix(); }
 }
 
 /* ============================ FPS GOVERNOR ============================ */
@@ -305,8 +317,8 @@ export function startCinema3D(onPhase) {
 
   const hatsuki = makePlayer({ hair: 0x3a2a1a, shirt: 0xff8fb3, pants: 0x4a6fa5, name: '♥ Hatsuki', tag: '#ffb7d1', accessory: 'flower' });
   const van = makePlayer({ hair: 0x1a1a2e, shirt: 0x7ec8e3, pants: 0x2e4057, name: 'Van ♪', tag: '#a8d8ff', accessory: 'cap' });
-  hatsuki.root.position.set(10.5, 0, 0.6); hatsuki.root.rotation.y = -Math.PI / 2;
-  van.root.position.set(-10.5, 0, -0.6); van.root.rotation.y = Math.PI / 2;
+  hatsuki.root.position.set(-10.5, 0, -0.6); hatsuki.root.rotation.y = Math.PI / 2;
+  van.root.position.set(10.5, 0, 0.6); van.root.rotation.y = -Math.PI / 2;
   scene.add(hatsuki.root, van.root);
 
   const heart = voxelHeart(0.24); heart.position.set(0, 3.6, 0); heart.scale.setScalar(0.001); scene.add(heart);
@@ -331,8 +343,9 @@ export function startCinema3D(onPhase) {
     govern(dt);
     if (t < 4.2) {
       setPhase(0); const k = easeOut(clamp01(t / 4.2));
-      hatsuki.root.position.x = THREE.MathUtils.lerp(10.5, 1.05, k);
-      van.root.position.x = THREE.MathUtils.lerp(-10.5, -1.05, k);
+      const span = (camera.aspect || 1) < 0.8 ? 6.2 : 10.5; // never spawn off-frame
+      hatsuki.root.position.x = THREE.MathUtils.lerp(-span, -1.05, k);
+      van.root.position.x = THREE.MathUtils.lerp(span, 1.05, k);
       poseWalk(hatsuki, t); poseWalk(van, t + 0.4);
     } else if (t < 5.1) {
       setPhase(1);
@@ -349,8 +362,8 @@ export function startCinema3D(onPhase) {
       heart.scale.setScalar(1 + Math.sin(t * 3) * 0.06); heart.rotation.y = Math.sin(t * 0.8) * 0.25;
     }
     const turn = clamp01((t - 4.2) / 0.9);
-    hatsuki.root.rotation.y = -Math.PI / 2 + turn * 0.5;
-    van.root.rotation.y = Math.PI / 2 - turn * 0.5;
+    hatsuki.root.rotation.y = Math.PI / 2 - turn * 0.5;
+    van.root.rotation.y = -Math.PI / 2 + turn * 0.5;
     clouds.children.forEach(c => { c.position.x += c.userData.speed * dt; if (c.position.x > 28) c.position.x = -28; });
     stepParticles(petals, t, dt); stepParticles(fireflies, t, dt);
     river.material.opacity = 0.78 + Math.sin(t * 1.7) * 0.1;
