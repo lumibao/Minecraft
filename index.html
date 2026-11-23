@@ -1,14 +1,146 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache">
 <title>Our Little Overworld — 33 Months Together</title>
-<meta http-equiv="refresh" content="0; url=our-little-overworld/">
-<style>body{background:#101B36;color:#fff;font-family:system-ui,sans-serif;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center;padding:20px}a{color:#FFC96B}</style>
+<link rel="stylesheet" href="our-little-overworld/css/main.css"><link rel="stylesheet" href="our-little-overworld/css/world.css"><link rel="stylesheet" href="our-little-overworld/css/mobs.css"><link rel="stylesheet" href="our-little-overworld/css/animations.css"><link rel="stylesheet" href="our-little-overworld/css/sections.css"><link rel="stylesheet" href="our-little-overworld/css/interactions.css"><link rel="stylesheet" href="our-little-overworld/css/responsive.css">
 </head><body>
-<main>
-<h1>🌸 Our Little Overworld</h1>
-<p>Opening the website — scroll &amp; tap, no gameplay…</p>
-<p><a href="our-little-overworld/">▶ Tap here if it doesn't open automatically</a></p>
-<p style="opacity:.6;font-size:13px">The older playable 3D prototype is kept at <a href="game.html">game.html</a> — the main gift is the website.</p>
-</main>
-<script>location.replace('our-little-overworld/');</script>
+<div id="progress"></div><div id="cinema-bars"></div><div id="petals"></div>
+
+<div id="loader" role="status" aria-label="Loading">
+  <div class="grass-block"></div>
+  <h1 class="pixel" style="font-size:clamp(20px,5vw,34px)">GENERATING OUR WORLD...</h1>
+  <div class="loadbar"><div id="loadfill"></div></div>
+  <p id="loadtext">Placing 33 months of memories...</p>
+  <p style="opacity:.7">for Hatsuki, with love — Van 💛</p>
+</div>
+
+<nav aria-label="Story navigation">
+  <a href="#home">🏠 Home</a><a href="#spawn">🌱 Spawn</a><a href="#memories">🌸 Memories</a><a href="#mobs">🐝 Mobs</a><a href="#cine">🎬 Scenes</a><a href="#house">🏡 Home Sweet Home</a><a href="#letter">📖 Letter</a><a href="#end">💛 Final Chapter</a>
+  <button id="max-btn" aria-label="Toggle maximize cinema mode">⛶ MAXIMIZE</button>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="clouds"></div><div class="sun"></div>
+  <div class="hill" style="left:0;width:55%;height:22%"></div><div class="hill" style="right:0;width:60%;height:17%"></div>
+  <div class="tree keep" style="left:6%"><div class="leaves"></div><div class="trunk"></div></div>
+  <div class="tree cherry keep" style="left:20%"><div class="leaves"></div><div class="trunk"></div></div>
+  <div class="cottage-mini"><div class="roof"></div><div class="walls"><span class="win" style="left:10px"></span><span class="win" style="right:10px"></span></div></div>
+  <span class="lantern-dot" style="left:30%;bottom:26%"></span><span class="lantern-dot" style="right:26%;bottom:30%"></span>
+  <div class="river"></div>
+  <div class="wrap reveal in">
+    <span class="hero-char" aria-hidden="true">🌸</span>
+    <h1 class="pixel" style="font-size:clamp(34px,8vw,74px);line-height:1.05">OUR LITTLE<br>OVERWORLD</h1>
+    <p class="pixel" style="color:#ffe9a8;font-size:clamp(16px,3.5vw,26px);margin:10px 0">33 MONTHS TOGETHER</p>
+    <p class="lead serif" style="font-size:19px">“Out of all the worlds that could exist, I'm glad that this is the one where I get to love you.”</p>
+    <button class="mc-btn green pixel" id="enter-btn">▶ ENTER OUR WORLD</button>
+    <p style="margin-top:14px;opacity:.9">A love story built block by block · Hatsuki × Van · best in ⛶ Maximize mode</p>
+  </div>
+</section>
+
+<!-- SPAWN -->
+<section id="spawn"><div class="clouds"></div><div class="wrap reveal" id="spawn-card">
+  <h2 class="pixel">🌱 OUR SPAWN POINT</h2>
+  <p class="lead">Every world has a starting point. Every love story does too.<br><b>Welcome to the place where our little story continues.</b></p>
+  <div class="signpost pixel">33 MONTHS. ONE BEAUTIFUL ADVENTURE.</div>
+  <div class="big33 pixel" id="count33" aria-label="33 months">0</div>
+  <p class="pixel" style="color:#2e5b1e">MONTHS TOGETHER</p>
+  <p class="typewriter serif" id="spawn-type" style="font-size:19px;max-width:620px;margin:14px auto"></p>
+  <div style="font-size:26px" aria-hidden="true">🌼 🌷 🌻 🌼 🌷</div>
+</div></section>
+
+<!-- CHERRY GROVE -->
+<section id="memories"><div class="wrap reveal">
+  <h2 class="pixel">🌸 THE CHERRY GROVE</h2>
+  <p class="lead">Thirty-three little blocks under the cherry blossoms — one for every month of us. Tap each one, Baby. No timer, no score. Just… us, month by month.</p>
+  <div class="pond" aria-hidden="true"></div>
+  <div class="grove-grid" id="grove-grid"></div>
+  <div id="grove-heart" aria-hidden="true">💗</div>
+  <p class="pixel" id="grove-caption">33 BLOCKS. 33 CHAPTERS. AND STILL, MY FAVORITE PERSON.</p>
+</div></section>
+
+<!-- MOBS -->
+<section id="mobs" style="background:linear-gradient(#7ec850,#5D9149)"><div class="wrap reveal">
+  <h2 class="pixel">🐾 OUR LITTLE MOBS</h2>
+  <p class="lead">Every world needs its little companions. These ones have been waiting to say something to you — tap them. 💛</p>
+  <div class="mob-grid">
+    <div class="mob" data-mob="allay" tabindex="0" role="button" aria-label="Allay — tap for a message"><div class="stage"><div class="allay" style="position:relative"><span class="p wing" style="left:-26px"></span><span class="p wing r" style="right:-26px;left:auto"></span><div class="head"><span class="p eye" style="left:8px"></span><span class="p eye" style="right:8px"></span></div><div class="body"></div></div></div><h3>🩵 Allay</h3><small>tap me</small></div>
+    <div class="mob" data-mob="bee" tabindex="0" role="button" aria-label="Bee — tap for a message"><div class="stage"><div class="bee" style="position:relative"><span class="p bwing" style="left:16px"></span><div class="body"><span class="p eye2" style="left:8px"></span></div></div></div><h3>🐝 Bee</h3><small>tap me</small></div>
+    <div class="mob" data-mob="wolf" tabindex="0" role="button" aria-label="Wolf — tap for a message"><div class="stage"><div class="wolf" style="position:relative"><div class="head" style="margin:0 auto"><span class="p ear" style="left:4px"></span><span class="p ear" style="right:4px"></span><span class="p" style="width:7px;height:7px;background:#111;left:9px;top:16px"></span><span class="p" style="width:7px;height:7px;background:#111;right:9px;top:16px"></span><span class="p snout"></span></div><div class="wbody"><span class="p collar"></span><span class="p tail"></span></div></div></div><h3>🐺 Wolf</h3><small>tap me · loyal since day 1</small></div>
+    <div class="mob" data-mob="slime" tabindex="0" role="button" aria-label="Slime — tap for a message"><div class="stage"><div class="slime"><span class="inner"></span><span class="p seye" style="left:18px"></span><span class="p seye" style="right:18px"></span></div></div><h3>🟢 Slime</h3><small>tap me · boing</small></div>
+    <div class="mob" data-mob="enderman" tabindex="0" role="button" aria-label="Tall friend — tap for a message"><div class="stage"><div class="ender" style="position:relative"><div class="head"><span class="p peye" style="left:3px"></span><span class="p peye" style="right:3px"></span></div><div class="ebody"></div><span class="p arm" style="left:-8px"></span><span class="p arm" style="right:-8px;left:auto"></span></div></div><h3>💜 Tall Friend</h3><small>tap me · not scary, promise</small></div>
+    <div class="mob" data-mob="creeper" tabindex="0" role="button" aria-label="Friendly creeper — tap for a message"><div class="stage"><div class="creeper"><div class="head"><span class="p ceye" style="left:8px"></span><span class="p ceye" style="right:8px"></span><span class="p mouth"></span></div><div class="cbody"></div></div></div><h3>💚 Friendly Creeper</h3><small>tap me · sssafe</small></div>
+  </div>
+</div></section>
+
+<!-- CINEMATIC SCENES -->
+<section id="cine"><div class="wrap">
+  <h2 class="pixel reveal">🎬 SCENES I'D REPLAY</h2>
+  <p class="lead reveal">Not a highlight reel, Baby. Just three quiet scenes I keep coming back to — the kind nobody films, but nobody forgets either. <span style="opacity:.75">(✏️ Van: make these yours in index.html — search SCENE.)</span></p>
+
+  <article class="scene reveal"><div class="kicker pixel">SCENE 01 · MORNING · NO SCRIPT</div><h3 class="serif">The way an ordinary morning changes when it's you</h3>
+  <p>There's nothing cinematic about a sleepy morning — messy hair, half-awake good mornings, yung boses mong bagong gising pa lang. Pero ewan ko ba. Kung may eksena akong paulit-ulit na ire-replay, iyon 'yon. Hindi dahil espesyal ang nangyari. Kundi dahil ikaw ang kasama ko sa pinakaordinaryong parte ng araw, at doon ko pinakanararamdaman na totoo tayo. Hindi lang tayo pang-magandang araw, Baby. Pang-totoong buhay tayo.</p>
+  <p class="shot">♪ no music needed — just you, half-asleep, saying my name like it's home.</p></article>
+
+  <article class="scene reveal"><div class="kicker pixel">SCENE 02 · RAINY DAY · THE HONEST ONE</div><h3 class="serif">For the days that weren't pretty — thank you for staying in frame</h3>
+  <p>Alam kong may mga eksena tayong hindi instagrammable. Mga araw na pagod tayo, tahimik, o hindi magkaintindihan. Gusto kong sabihin sa'yo ng diretso: hindi ko ikinahihiya ang mga araw na 'yon. Doon ko nakita kung ano talaga tayo — hindi tayo tumakbo. Nag-usap tayo. Nagpatawad. Bumalik tayo sa isa't isa. Kung mahal lang kita sa madaling araw, mababaw iyon. Mahal kita lalo kasi nakita na kita sa mahirap — at dito pa rin ako.</p>
+  <p class="shot">♪ camera holds. nobody leaves. that's the whole scene — and it's my favorite kind.</p></article>
+
+  <article class="scene reveal"><div class="kicker pixel">SCENE 03 · SUNSET · THE PROMISE</div><h3 class="serif">Golden hour, and I'm still choosing the same person</h3>
+  <p>Sa mga pelikula, sa sunset nagtatapos ang kwento. Sa atin, doon lang siya nagre-reset. Tatlumpu't tatlong paglubog ng araw ang lumipas kasama ka — este, tatlumpu't tatlong buwan — at sa bawat isa, pareho ang ending na gusto ko: ikaw ang katabi ko habang dumidilim, ikaw ang kasama kong maghintay ng bukas. Hindi ko kailangan ng mas malaking mundo, Baby. Kailangan ko lang ng mas maraming araw sa mundong 'to, kasama ka.</p>
+  <p class="shot">♪ fade to gold. text on screen: “and I'd still choose you in every world.” — roll credits… pero hindi pa tayo tapos.</p></article>
+</div></section>
+
+<!-- HOME -->
+<section id="house"><div class="wrap reveal">
+  <h2 class="pixel">🏡 OUR LITTLE HOME</h2>
+  <p class="lead">Not the biggest house in the world. Just the safest coordinates I know. Tap the sign, the book, and the lantern, Baby.</p>
+  <div class="cottage" role="group" aria-label="CSS voxel cottage with three interactive objects">
+    <div class="chimney"><span class="smoke" style="left:8px;top:-14px"></span><span class="smoke" style="left:14px;top:-10px;animation-delay:1s"></span><span class="smoke" style="left:4px;top:-18px;animation-delay:2s"></span></div>
+    <div class="roof"></div>
+    <div class="walls">
+      <button class="win2" style="left:26px" id="hs-lantern" aria-label="Lantern window — tap for reassurance"></button>
+      <button class="win2" style="right:26px" id="hs-book" aria-label="Enchanted book window — tap for a message"></button>
+      <div class="door"></div>
+      <button class="hotspot pixel" style="left:50%;transform:translateX(-50%);bottom:112px" id="hs-sign">🪧 Read the sign</button>
+    </div>
+    <div class="stone"></div>
+  </div>
+  <p style="color:#2e5b1e">🌷 flower boxes · 🪨 stone foundation · the door is always open for you</p>
+</div></section>
+
+<!-- LETTER -->
+<section id="letter"><div class="wrap reveal">
+  <h2 class="pixel">📖 THE ENCHANTED BOOK</h2>
+  <p class="lead">Some things are too big for a chat message. So I put them in a book, in a world, for my favorite person.</p>
+  <div class="book3d" id="book-open" role="button" tabindex="0" aria-label="Open the enchanted book letter"><div class="cover"><span style="font-size:40px">📖</span><b class="pixel" style="color:#FFC96B">A LETTER FOR MY<br>FAVORITE PERSON</b><small style="color:#fff">tap to open · 4 pages</small></div></div>
+  <div id="letter-reader"><div id="letter-pages"></div></div>
+</div></section>
+
+<!-- PORTAL -->
+<section id="portal-sec"><div class="wrap reveal">
+  <h2 class="pixel">🌀 THE PORTAL BETWEEN CHAPTERS</h2>
+  <p class="lead">Not every part of the journey is easy, but every chapter teaches us something.<br>The hard days didn't end our story, Baby — they deepened it. Tap the portal when you're ready for the final chapter.</p>
+  <div class="portal" id="portal" role="button" tabindex="0" aria-label="Enter the portal to the final chapter"></div>
+  <p style="opacity:.85">through every uncertain place — still us, still choosing us.</p>
+</div></section>
+
+<!-- END / BEACON -->
+<section id="end">
+  <div class="island" style="left:6%;top:16%;width:120px;height:34px"></div><div class="island" style="right:8%;top:26%;width:90px;height:28px;animation-delay:1.4s"></div>
+  <div class="wrap reveal" id="final-msg">
+    <h2 class="pixel">🌌 OUR LITTLE END DIMENSION</h2>
+    <p class="lead serif" style="font-size:20px">“Even at the edge of every world, I'd still want you beside me.”</p>
+    <div class="beacon" id="beacon" role="button" tabindex="0" aria-label="Activate the golden beacon"><div class="beam"></div><div class="core"></div><div class="base"></div></div>
+    <p class="pixel" style="color:#FFC96B;margin-top:16px">▲ TAP THE BEACON ▲</p>
+    <h2 class="pixel" style="color:#FFC96B;margin-top:30px">33 MONTHS, AND I'M STILL CHOOSING YOU.</h2>
+    <p class="lead">Thank you for being my favorite part of this world. I hope we get to build countless more chapters together.</p>
+    <h1 class="pixel" style="font-size:clamp(26px,6vw,48px);color:#F4B7CB">HAPPY 33RD MONTHSARY, BABY!</h1>
+    <p class="pixel">ONE WORLD. TWO HEARTS. THIRTY-THREE MONTHS.<br>AND I'D STILL CHOOSE YOU IN EVERY WORLD.</p>
+    <p style="opacity:.8;margin-top:16px">built block by block, with love — Van, for Hatsuki 💛<br><button class="mc-btn gold pixel" onclick="window.scrollTo({top:0,behavior:'smooth'})">↺ BACK TO SPAWN — REPLAY OUR WORLD</button></p>
+  </div>
+</section>
+
+<button id="secret-star" aria-label="A secret star">★</button>
+<div class="toastbox" id="toast" role="status"></div>
+<script type="module" src="our-little-overworld/js/main.js?v=33"></script>
 </body></html>
