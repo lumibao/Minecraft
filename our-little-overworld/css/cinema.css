@@ -29,3 +29,18 @@ nav{box-shadow:0 8px 24px rgba(0,0,0,.35)}
 #toast,.toastbox{border-radius:10px}
 @media(max-width:640px){.intro-stage{height:48vh}.player3d{transform:scale(.88)}#intro-cap{padding-bottom:12vh}}
 @media (prefers-reduced-motion:reduce){#ivan,#ihat{animation-duration:.01s}.player3d *{animation:none!important}}
+
+/* ===== Mobile-first cinematic hardening ===== */
+#intro{height:100dvh;min-height:100svh}
+#intro-canvas{touch-action:none}
+#intro-cap{padding-bottom:calc(9vh + env(safe-area-inset-bottom, 0px))}
+#skip-intro{bottom:calc(8vh + env(safe-area-inset-bottom, 0px));min-height:48px;min-width:120px;-webkit-tap-highlight-color:transparent}
+@media(max-width:640px){
+  #intro-cap .line{font-size:clamp(18px,5.4vw,22px);padding:0 6px}
+  #intro-cap p:last-child{font-size:11px;letter-spacing:1.6px}
+  #beacon3d{height:230px}
+  .scene{padding:22px 18px}
+  .mob .stage{height:104px}
+}
+@media(max-width:380px){#intro-cap .line{font-size:17px}nav a,nav button{padding:7px 6px}}
+@media(orientation:landscape) and (max-height:480px){#intro-cap{padding-bottom:14vh}#intro-cap .line{min-height:1.4em}}
