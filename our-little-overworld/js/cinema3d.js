@@ -235,6 +235,40 @@ function buildFlowers(scene) {
   }
 }
 
+
+/* Ground detail — thousands of tiny voxel tufts, stones and mushrooms,
+   generated once into InstancedMeshes (one draw call each). This is what
+   breaks up the flat striped look of the raw terrain on phone screens. */
+function buildGroundDetail(scene) {
+  let seed = 33; // deterministic: the world looks the same on every visit
+  const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const tuftGeo = new THREE.BoxGeometry(0.09, 0.34, 0.09);
+  const tuftMat = solid(0x4e9e3f);
+  const N = Quality.mobile ? 700 : 1500;
+  const tufts = new THREE.InstancedMesh(tuftGeo, tuftMat, N);
+  const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler(), v = new THREE.Vector3(), sc = new THREE.Vector3();
+  for (let i = 0; i < N; i++) {
+    const x = (rand() - 0.5) * (Quality.terrainW - 2), z = (rand() - 0.5) * (Quality.terrainD - 2);
+    e.set((rand() - 0.5) * 0.35, rand() * Math.PI, (rand() - 0.5) * 0.35); q.setFromEuler(e);
+    const s = 0.7 + rand() * 0.9; sc.set(s, s, s); v.set(x, 0.17, z);
+    m4.compose(v, q, sc); tufts.setMatrixAt(i, m4);
+  }
+  scene.add(tufts);
+  const stoneMat = solid(0x9a9a9a);
+  const stones = new THREE.InstancedMesh(new THREE.BoxGeometry(0.34, 0.2, 0.3), stoneMat, Quality.mobile ? 40 : 80);
+  for (let i = 0, n = Quality.mobile ? 40 : 80; i < n; i++) {
+    e.set(0, rand() * Math.PI, 0); q.setFromEuler(e); const s = 0.6 + rand(); sc.set(s, s, s);
+    v.set((rand() - 0.5) * 26, 0.1, (rand() - 0.5) * 15); m4.compose(v, q, sc); stones.setMatrixAt(i, m4);
+  }
+  scene.add(stones);
+  for (let i = 0; i < 10; i++) { // little red mushrooms near the trees
+    const g = new THREE.Group();
+    g.add(box(0.14, 0.22, 0.14, solid(0xf4f0e8), 0, 0.11, 0));
+    g.add(box(0.34, 0.16, 0.34, solid(0xd94f4f), 0, 0.28, 0));
+    g.position.set((rand() - 0.5) * 20, 0, (rand() - 0.5) * 12); scene.add(g);
+  }
+}
+
 /* ============================ CAMERA DIRECTION ============================ */
 // Three shots, cross-blended by the film clock:
 //   SHOT A (0–2.2s)   wide establishing — the empty world, breathing room
@@ -306,6 +340,7 @@ export function startCinema3D(onPhase) {
   sunBall.position.set(-13, 5.5, -22); scene.add(sunBall);
 
   const river = buildTerrain(scene);
+  buildGroundDetail(scene);
   buildFlowers(scene); buildFence(scene); buildCottage(scene);
   [[-7, -4, 1], [7, -4, 1], [-9, 3, 0], [9, 3, 0], [-5, 7, 1], [5, 7, 1], [-12, 1, 1], [12, -2, 0]]
     .forEach(([x, z, c]) => scene.add(buildTree(x, z, !!c, 0.9 + Math.random() * 0.35)));

@@ -44,3 +44,11 @@ nav{box-shadow:0 8px 24px rgba(0,0,0,.35)}
 }
 @media(max-width:380px){#intro-cap .line{font-size:17px}nav a,nav button{padding:7px 6px}}
 @media(orientation:landscape) and (max-height:480px){#intro-cap{padding-bottom:14vh}#intro-cap .line{min-height:1.4em}}
+
+/* ===== Intro presentation fixes (from mobile screenshot) ===== */
+body.cinema-playing{overflow:hidden;height:100dvh}
+body.cinema-playing nav{display:none}
+#intro{z-index:600}
+#intro-cap{width:min(680px,100%);box-sizing:border-box;padding-left:20px;padding-right:20px;overflow:hidden}
+#intro-cap .line{overflow-wrap:break-word;word-break:normal;max-width:100%}
+html,body{overflow-x:clip}
