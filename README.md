@@ -64,3 +64,8 @@ assets/ textures/ characters/ images/ audio/ fonts/  (original assets, READMEs i
 All JS syntax-checked; 33 flowers, 33 books, 5 chests, 7 locations, 8 achievements wired; save/load, day/night cycle, mobile joystick + look-drag, graphics quality setting, beacon gating + finale cinematic.
 
 **Happy 33rd Monthsary, Baby. YOU ARE MY FAVORITE WORLD. 💛**
+
+---
+
+## 🎬 Also in this repo: OUR LITTLE OVERWORLD (new — cinematic website)
+A separate, non-game anniversary website lives in [`our-little-overworld/`](our-little-overworld/) — CSS-voxel mobs, 33 tappable Cherry-Grove month blocks, a 4-page enchanted-book letter, three cinematic Taglish scenes about her, portal → golden beacon finale, and a ⛶ Maximize/Cinema mode. See `our-little-overworld/README.md`. The playable 3D game above remains untouched. Open `our-little-overworld/index.html` to view.
